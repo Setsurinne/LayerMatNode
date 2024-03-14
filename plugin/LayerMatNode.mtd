@@ -72,10 +72,54 @@
 	maya.output_name		STRING	"outColor"
 	maya.output_shortname	STRING	"out"
 
+	[attr albedoNode]
+		maya.name			STRING	"albedoNode"
+		maya.shortname		STRING	"aNode"
 	[attr albedo]
 		desc				STRING	"Albedo"
 		maya.name			STRING	"albedo"
 		maya.shortname		STRING	"a"
+	[attr stemNode]
+		maya.name			STRING	"stemNode"
+		maya.shortname		STRING	"sNode"
+    [attr Scale]
+        desc                 STRING     "Stem scale"
+		default				VECTOR		1 1 1
+        min                 VECTOR     	0 0 0
+        max                 VECTOR     	10 10 10
+        maya.shortname         STRING    "s"
+        maya.name             STRING    "scale"    
+	[attr Offset]
+        desc                 STRING     "Stem offset"
+		default				VECTOR		1 1 1
+        min                 VECTOR     	0 0 0
+        max                 VECTOR     	10 10 10
+        maya.shortname         STRING    "off"
+        maya.name             STRING    "Offset"
+	[attr Orientation]
+        desc                 STRING     "Stem Orientation"
+		default				VECTOR		1 1 1
+        min                 VECTOR     	0 0 0
+        max                 VECTOR     	10 10 10
+        maya.shortname         STRING    "ori"
+        maya.name             STRING    "Orientation"
+	[attr knotNode]
+		maya.name			STRING	"knotNode"
+		maya.shortname		STRING	"kNode"
+	[attr Density]
+		desc				STRING	"Knot density"
+		min					FLOAT	0.0001
+		max					FLOAT	1.0
+		default				FLOAT	0.4
+		maya.name			STRING	"Density"
+		maya.shortname		STRING	"d"	
+	[attr Lifespan]
+		desc				STRING	"Knot lifespan"
+		min					FLOAT	0.0001
+		max					FLOAT	1.0
+		default				FLOAT	0.5
+		maya.name			STRING	"Lifespan"
+		maya.shortname		STRING	"l"
 
 [node DielectricNode]
 	maya.name				STRING	"la_DielectricBSDF"

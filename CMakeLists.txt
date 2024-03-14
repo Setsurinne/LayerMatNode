@@ -21,8 +21,7 @@ if(NOT CMAKE_BUILD_TYPE AND NOT CMAKE_CONFIGURATION_TYPES)
     SET_PROPERTY(CACHE CMAKE_BUILD_TYPE PROPERTY STRINGS "Debug" "Release" "MinSizeRel" "RelWithDebInfo")
 endif()
 
-set(ARNOLD_DIR "$ENV{ARNOLD_PATH}")
-
+set(ARNOLD_DIR "C:\\Program\ Files/Autodesk/Arnold/maya2023")
 include_directories("${ARNOLD_DIR}/include/arnold")
 
 file(GLOB_RECURSE core_headers
@@ -60,5 +59,19 @@ target_link_libraries(${CMAKE_PROJECT_NAME} "${ARNOLD_DIR}/lib/ai.lib")
 if (CMAKE_VERSION VERSION_GREATER 3.12)
   set_property(TARGET ${CMAKE_PROJECT_NAME} PROPERTY CXX_STANDARD 20)
 endif()
+
+
+# Directory containing the built .py files
+
+# Destination directory to copy .py files to
+set(DEST_PY_DIR ${ARNOLD_DIR})
+
+# Add a custom command that runs after building 'MyApp' target
+# This assumes that your build process somehow produces .py files in SOURCE_PY_DIR
+
+add_custom_command(TARGET LayerMatNode POST_BUILD
+    COMMAND ${CMAKE_COMMAND} -D DEST_ROOT:STRING=${DEST_PY_DIR} -D SOURCE_DIR:STRING=${CMAKE_RUNTIME_OUTPUT_DIRECTORY} -P ${CMAKE_SOURCE_DIR}/copyFileCMake.cmake
+    COMMENT "Copying .py files to ${DEST_PY_DIR}"
+)
 
 # TODO: Add tests and install targets if needed.
